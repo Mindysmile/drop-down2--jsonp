@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+      #inp {width: 300px; height: 30px; padding: 5px; border:1px solid #f90; font-size: 16px;}
+      #ul {border:1px solid #f90; width: 310px; margin: 0;padding: 0; display: none;}
+      li a { line-height: 30px; padding: 5px; text-decoration: none; color: black; display: block;}
+      li a:hover{ background: #f90; color: white; }
+    </style>
+</head>
+<body>
+<input id="inp" type="text"/>
+<ul id="ul"></ul>
+<script>
+    var oUl=document.getElementById("ul");
+    var oInp=document.getElementById("inp");
+    function Mindysmile(data){
+        var oUl=document.getElementById("ul");
+        var html='';
+        if(data.s.length){
+            oUl.style.display="block";
+            for(var i=0;i<data.s.length;i++){
+                html+='<li><a target="_blank" href="http://www.baidu.com/s?wd='+data.s[i]+'">'+data.s[i]+'</a></li>';
+                //点击返回的内容
+            }
+            oUl.innerHTML=html;
+        }else{
+            oUl.style.display="none";
+
+        }
+    }
+    oInp.onkeyup=function(){
+        if(this.value!=""){
+
+            var oScript=document.createElement("script");
+            oScript.src="http://www.baidu.com/su?wd="+this.value+"&cb=Mindysmile";
+           //请求 网络里面
+            document.body.appendChild(oScript);
+    }else{
+            oUl.style.display="none";
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
