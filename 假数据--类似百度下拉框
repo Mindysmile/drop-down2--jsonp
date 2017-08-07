@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="btn" value="">
+<ul id="ul">
+</ul>
+<script>
+    var arr=['aaa','abc','acc','dda','bbb','bbc'];
+    var btn=document.getElementById('btn');
+    var ul=document.getElementById('ul');
+    var li=document.getElementsByTagName('li');
+    var count=-1;
+    btn.onkeyup=function(ev) {
+        var ev = ev || window.event;
+        var html = '';
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].indexOf(btn.value) == 0) {
+                html += '<li>' + arr[i] + '</li>';
+            }
+        }
+        if (btn.value != '') {
+            ul.style.display = 'block';
+                ul.innerHTML = html;
+
+            } else {
+            ul.style.display = 'none';
+        }
+        for (var i = 0; i < li.length; i++) {
+            li[i].onclick = function () {
+                btn.value = this.innerHTML;
+
+               }
+        }
+
+        if(ev.keyCode==40){
+
+            ul.style.display = 'block';
+            count++;
+            if(count==li.length){
+                count=0;
+            }
+            li[count].style.backgroundColor='red';
+        }
+        if(ev.keyCode==13){
+          //   console.log(ev);
+            btn.value = li[count].innerHTML;
+            count=0;
+            ul.style.display = 'none';
+        }
+    }
+
+</script>
+</body>
+</html>
